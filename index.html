@@ -35,6 +35,13 @@ body {
     color: var(--dark);
     padding: 20px;
 }
+.about-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
 
 /* ══════════════════════════════════════════
    APP WINDOW
@@ -728,10 +735,18 @@ function doLogin() {
 function renderAbout() {
     vp.innerHTML = `
     <div class="about-page">
-      <div class="avatar-ring">👩‍💻</div>
+
+      <!-- PROFILE IMAGE -->
+      <div class="avatar-ring">
+        <img src="your-image.jpg" alt="Profile Picture" class="about-img">
+      </div>
+
       <h2 class="about-name">ABOUT ME</h2>
       <p class="about-italic">GLAISEL ANNE GARCIA PICO</p>
-      <p class="about-bio">Hi! I'm Glai. I am intuitive, resilient, and thoughtful. This portal showcases my journey as a student in <strong>INFORMATION TECHNOLOGY</strong>. I love building things, telling stories, and finding purpose in every small step.</p>
+      <p class="about-bio">
+        Hi! I'm Glai. I am intuitive, resilient, and thoughtful. This portal showcases my journey as a student in 
+        <strong>INFORMATION TECHNOLOGY</strong>. I love building things, telling stories, and finding purpose in every small step.
+      </p>
 
       <div class="about-grid">
         <div class="about-card">
@@ -743,23 +758,27 @@ function renderAbout() {
             <li>WD101 – Web Development</li>
           </ul>
         </div>
+
         <div class="about-card">
           <h4><i class="fas fa-users"></i> Connections</h4>
           <p><strong>Kim Ashlee Nicor</strong><br>A true friend through thick and thin.</p>
           <br>
           <p><strong>Trixie Eunice Almodovar</strong><br>Kindness personified.</p>
         </div>
+
         <div class="about-card">
           <h4><i class="fas fa-heart"></i> Movies I Love</h4>
           <p><strong>Hello, Love, Goodbye</strong></p>
           <p><strong>One More Chance</strong></p>
           <p><strong>Love Is Color Blind</strong></p>
+
           <div class="mood-row" style="margin-top:14px;">
             <div class="mood-box"><span class="mood-emoji">😊</span><p>Happy</p></div>
             <div class="mood-box"><span class="mood-emoji">🥺</span><p>Sad</p></div>
             <div class="mood-box"><span class="mood-emoji">😤</span><p>Grind Mode</p></div>
           </div>
         </div>
+
         <div class="about-card">
           <h4><i class="fas fa-map-marker-alt"></i> Quick Info</h4>
           <p>📍 Central Luzon, Philippines</p>
@@ -770,7 +789,6 @@ function renderAbout() {
       </div>
     </div>`;
 }
-
 /* ════════════════════════════════════════
    SKILLS  (JSON-driven)
 ════════════════════════════════════════ */
