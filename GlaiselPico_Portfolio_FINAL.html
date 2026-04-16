@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glaisel Anne Pico | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* ══════════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════════ */
+:root {
+    --blue:        #dcf2ff;
+    --blue-mid:    #b8e4ff;
+    --pink:        #ffe3ec;
+    --pink-dark:   #ffb6c1;
+    --pink-deeper: #ff8fab;
+    --white:       #ffffff;
+    --dark:        #2d3142;
+    --muted:       #5f6c7b;
+    --light:       #f7fbff;
+    --radius-lg:   28px;
+    --radius-md:   18px;
+    --radius-sm:   12px;
+    --shadow:      0 8px 32px rgba(100,160,220,.13);
+    --shadow-sm:   0 2px 12px rgba(100,160,220,.10);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background: linear-gradient(135deg, var(--blue) 0%, #f0e8ff 100%);
+    min-height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+    padding: 20px;
+}
+
+/* ══════════════════════════════════════════
+   APP WINDOW
+══════════════════════════════════════════ */
+.app-window {
+    width: 100%; max-width: 1120px;
+    min-height: 88vh;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 64px rgba(80,120,200,.15);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+}
+
+/* ══════════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════════ */
+nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 36px;
+    background: var(--white);
+    border-bottom: 2px solid var(--blue);
+    flex-wrap: wrap; gap: 10px;
+    position: sticky; top: 0; z-index: 50;
+}
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800; font-size: 1.3rem;
+    color: var(--dark); letter-spacing: 1px;
+}
+.brand span { color: var(--pink-deeper); }
+.nav-menu { display: flex; gap: 8px; flex-wrap: wrap; }
+.nav-btn {
+    background: transparent;
+    border: 2px solid var(--blue-mid);
+    padding: 8px 16px; border-radius: 50px;
+    color: var(--dark); font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; transition: .25s; font-family: 'Poppins', sans-serif;
+}
+.nav-btn:hover { background: var(--blue); }
+.nav-btn.active-btn {
+    background: var(--pink) !important;
+    border-color: var(--pink-dark) !important;
+    color: var(--dark) !important;
+}
+
+/* ══════════════════════════════════════════
+   VIEWPORT
+══════════════════════════════════════════ */
+#viewport { flex: 1; overflow-y: auto; background: var(--white); }
+
+/* ══════════════════════════════════════════
+   SHARED COMPONENTS
+══════════════════════════════════════════ */
+.page-wrap { padding: 48px 64px; max-width: 880px; margin: 0 auto; }
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; margin-bottom: 8px;
+    color: var(--dark);
+}
+.page-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 32px; }
+.card {
+    background: var(--blue);
+    padding: 24px 28px;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+}
+.card-white {
+    background: var(--white);
+    border: 2px solid var(--blue);
+    padding: 24px 28px;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+}
+
+/* ══════════════════════════════════════════
+   FORMS (Register / Login / Contact)
+══════════════════════════════════════════ */
+.form-layout {
+    display: flex; align-items: center;
+    min-height: 75vh; padding: 48px 64px; gap: 48px;
+}
+.form-side-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; line-height: 1.2; margin-bottom: 12px;
+}
+.form-side-text h1 span { color: var(--muted); }
+.form-side-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+.form-box {
+    flex: 1; background: var(--blue);
+    padding: 36px; border-radius: 24px;
+}
+.form-group { margin-bottom: 14px; }
+.form-group label {
+    display: block; font-size: 0.78rem;
+    font-weight: 600; color: var(--muted);
+    margin-bottom: 5px; letter-spacing: .04em; text-transform: uppercase;
+}
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid var(--blue-mid);
+    background: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem; color: var(--dark);
+    outline: none; transition: border-color .25s;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--pink-dark); }
+.form-group input.err, .form-group textarea.err { border-color: #ff6b81 !important; }
+.err-msg {
+    font-size: 0.75rem; color: #ff6b81;
+    margin-top: 4px; display: block; min-height: 1.1em;
+}
+.form-group textarea { resize: vertical; }
+.action-btn {
+    width: 100%; padding: 15px;
+    background: var(--pink); border: none;
+    border-radius: 16px; font-weight: 700;
+    cursor: pointer; transition: .25s;
+    font-size: 0.95rem; font-family: 'Poppins', sans-serif;
+    color: var(--dark); margin-top: 4px;
+}
+.action-btn:hover { background: var(--pink-dark); }
+.action-btn:disabled { opacity: .6; cursor: not-allowed; }
+.success-msg {
+    background: #e6fff3; border: 1.5px solid #6fcf97;
+    color: #1a7a4a; border-radius: 12px;
+    padding: 12px 16px; font-size: 0.88rem;
+    margin-top: 12px; display: none; text-align: center;
+}
+.global-err {
+    color: #ff6b81; font-size: 0.82rem;
+    text-align: center; margin-top: 8px; min-height: 1.2em;
+}
+.hint-text {
+    text-align: center; font-size: 0.78rem;
+    color: var(--muted); margin-top: 14px;
+}
+.hint-text code {
+    background: var(--pink); padding: 2px 7px;
+    border-radius: 6px; font-family: monospace; font-size: .78rem;
+}
+.pass-wrap { position: relative; }
+.pass-wrap input { padding-right: 46px; }
+.toggle-pass {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    font-size: 1rem; color: var(--muted); transition: color .2s;
+}
+.toggle-pass:hover { color: var(--dark); }
+.checkbox-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.checkbox-row label { font-size: 0.85rem; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.checkbox-row input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--pink-deeper); }
+
+/* ══════════════════════════════════════════
+   ABOUT ME
+══════════════════════════════════════════ */
+.about-page { display: flex; flex-direction: column; align-items: center; padding: 44px 24px; }
+.avatar-ring {
+    width: 160px; height: 160px; border-radius: 50%;
+    border: 6px solid var(--pink-dark);
+    background: linear-gradient(135deg, var(--pink) 0%, var(--blue) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(255,140,170,.25);
+}
+.about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; letter-spacing: 4px; margin-bottom: 6px;
+}
+.about-italic {
+    font-family: 'Lora', serif;
+    font-style: italic; font-size: 1.1rem;
+    color: var(--muted); margin-bottom: 16px;
+}
+.about-bio {
+    font-size: 1rem; line-height: 1.85; text-align: center;
+    max-width: 640px; margin-bottom: 32px; color: var(--dark);
+}
+.about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; width: 100%; max-width: 820px;
+}
+.about-card {
+    background: var(--blue);
+    border-radius: var(--radius-md); padding: 22px 24px;
+}
+.about-card h4 {
+    font-size: 0.9rem; font-weight: 700;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.about-card h4 i { color: var(--pink-deeper); }
+.about-card p, .about-card li { font-size: 0.88rem; line-height: 1.9; color: var(--muted); }
+.about-card ul { padding-left: 18px; }
+.mood-row { display: flex; gap: 14px; margin-top: 14px; }
+.mood-box {
+    flex: 1; background: var(--white);
+    border-radius: 14px; padding: 16px;
+    text-align: center; border: 2px solid var(--pink);
+}
+.mood-box .mood-emoji { font-size: 2.4rem; margin-bottom: 6px; display: block; }
+.mood-box p { font-size: 0.78rem; font-weight: 600; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.skills-bar-list { list-style: none; margin-top: 8px; }
+.skills-bar-list li { margin-bottom: 10px; }
+.skill-label { font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; display: flex; justify-content: space-between; }
+.skill-bar { height: 7px; background: var(--white); border-radius: 10px; overflow: hidden; }
+.skill-fill { height: 100%; background: linear-gradient(90deg, var(--pink-deeper), var(--pink-dark)); border-radius: 10px; transition: width 1s ease; }
+
+/* ══════════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════════ */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.filter-btn {
+    padding: 7px 18px; border-radius: 50px;
+    border: 2px solid var(--blue-mid);
+    background: transparent; font-size: 0.78rem;
+    font-weight: 600; cursor: pointer; transition: .2s;
+    font-family: 'Poppins', sans-serif; color: var(--dark);
+}
+.filter-btn.active, .filter-btn:hover { background: var(--pink); border-color: var(--pink-dark); }
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.proj-card {
+    background: var(--blue); border-radius: var(--radius-md);
+    overflow: hidden; cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    border: 2px solid transparent;
+}
+.proj-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--pink-dark); }
+.proj-thumb {
+    height: 100px; background: linear-gradient(135deg, var(--pink) 0%, var(--blue) 100%);
+    display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
+}
+.proj-body { padding: 18px 20px; }
+.proj-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.proj-tag {
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: .07em; text-transform: uppercase;
+    background: var(--white); color: var(--muted);
+    padding: 3px 9px; border-radius: 8px;
+}
+.proj-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+.proj-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+.proj-card.hidden { display: none; }
+
+/* Modal */
+.modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(45,49,66,.5);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; opacity: 0; pointer-events: none;
+    transition: opacity .25s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+    background: var(--white); border-radius: var(--radius-lg);
+    padding: 36px; max-width: 520px; width: 100%;
+    transform: translateY(20px); transition: transform .25s;
+    position: relative; max-height: 80vh; overflow-y: auto;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-close {
+    position: absolute; top: 14px; right: 16px;
+    background: var(--blue); border: none; width: 30px; height: 30px;
+    border-radius: 50%; cursor: pointer; font-size: .9rem; transition: .2s;
+}
+.modal-close:hover { background: var(--pink); }
+.modal-emoji { font-size: 3rem; margin-bottom: 12px; display: block; }
+.modal-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 10px; }
+.modal-body { font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+.modal-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.modal-tag {
+    font-size: 0.7rem; font-weight: 700;
+    background: var(--pink); color: var(--dark);
+    padding: 4px 10px; border-radius: 8px;
+    letter-spacing: .05em; text-transform: uppercase;
+}
+.modal-link {
+    display: inline-block; padding: 10px 24px;
+    background: var(--pink); border-radius: 12px;
+    font-weight: 700; font-size: 0.88rem;
+    text-decoration: none; color: var(--dark); transition: .2s;
+}
+.modal-link:hover { background: var(--pink-dark); }
+
+/* ══════════════════════════════════════════
+   QUIZ
+══════════════════════════════════════════ */
+.quiz-q {
+    background: var(--blue); padding: 26px 28px;
+    border-radius: var(--radius-md); margin-bottom: 16px;
+}
+.quiz-q p { font-weight: 600; margin-bottom: 14px; }
+.q-opt {
+    display: block; width: 100%; padding: 13px 18px;
+    margin: 8px 0; background: var(--white);
+    border: 2px solid transparent; border-radius: 13px;
+    cursor: pointer; text-align: left; transition: .2s;
+    font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+}
+.q-opt:hover { border-color: var(--pink-dark); background: var(--pink); }
+.q-opt.selected { border-color: var(--pink-deeper); background: var(--pink); font-weight: 600; }
+.q-opt.correct { border-color: #6fcf97; background: #e6fff3; }
+.q-opt.wrong   { border-color: #ff6b81; background: #fff0f3; }
+#quiz-result {
+    text-align: center; font-size: 1.3rem; font-weight: 700;
+    color: var(--pink-deeper); margin: 16px 0;
+}
+.submit-btn {
+    display: block; margin: 0 auto;
+    max-width: 200px; padding: 14px 24px;
+    background: var(--pink); border: none;
+    border-radius: 16px; font-weight: 700;
+    cursor: pointer; font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif; transition: .2s;
+}
+.submit-btn:hover { background: var(--pink-dark); }
+
+/* ══════════════════════════════════════════
+   STORIES
+══════════════════════════════════════════ */
+.story-card {
+    background: var(--blue); border-radius: var(--radius-md);
+    overflow: hidden; cursor: pointer; margin-bottom: 14px;
+    transition: background .25s; border: 2px solid transparent;
+}
+.story-card.open { background: var(--pink); border-color: var(--pink-dark); }
+.story-header {
+    padding: 18px 26px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 600; font-size: 1rem;
+}
+.story-header i { transition: transform .3s; color: var(--pink-deeper); }
+.story-card.open .story-header i { transform: rotate(45deg); }
+.story-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease-out;
+    background: var(--white);
+}
+.story-card.open .story-body { max-height: 600px; border-top: 2px solid var(--blue); }
+.story-body p { line-height: 1.9; padding: 22px 26px; font-size: 0.9rem; color: var(--muted); }
+
+/* ══════════════════════════════════════════
+   INFO / JSON DATA VIEW
+══════════════════════════════════════════ */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+.info-card {
+    background: var(--blue); border-radius: var(--radius-md);
+    padding: 20px 22px;
+}
+.info-card h4 { font-size: 0.85rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.info-card h4 i { color: var(--pink-deeper); }
+.info-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+.json-badge {
+    display: inline-block; font-size: 0.65rem; font-weight: 700;
+    background: var(--pink); color: var(--dark);
+    padding: 2px 8px; border-radius: 6px;
+    letter-spacing: .06em; vertical-align: middle; margin-left: 6px;
+}
+
+/* ══════════════════════════════════════════
+   DASHBOARD
+══════════════════════════════════════════ */
+.dash-wrap { padding: 40px 56px; }
+.dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+.dash-header h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+.dash-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 28px; }
+.dash-stat {
+    background: var(--blue); border-radius: var(--radius-md);
+    padding: 20px; text-align: center;
+}
+.dash-stat .num { display: block; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); }
+.dash-stat .lbl { display: block; font-size: 0.72rem; font-weight: 600; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; }
+.dash-table-wrap { background: var(--light); border-radius: var(--radius-md); overflow: hidden; border: 1.5px solid var(--blue); }
+.dash-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.dash-table th {
+    background: var(--blue); padding: 12px 16px;
+    text-align: left; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
+}
+.dash-table td { padding: 13px 16px; border-bottom: 1.5px solid var(--blue); color: var(--dark); }
+.dash-table tr:last-child td { border-bottom: none; }
+.badge-new  { background: #e6fff3; color: #1a7a4a; padding: 3px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; }
+.badge-read { background: var(--blue); color: var(--muted); padding: 3px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; }
+.logout-btn {
+    padding: 9px 20px; background: var(--pink);
+    border: none; border-radius: 50px; font-weight: 700;
+    cursor: pointer; font-size: 0.82rem; font-family: 'Poppins', sans-serif; transition: .2s;
+}
+.logout-btn:hover { background: var(--pink-dark); }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 720px) {
+    .form-layout { flex-direction: column; padding: 32px 24px; gap: 24px; }
+    .form-side-text { text-align: center; }
+    .page-wrap { padding: 32px 20px; }
+    .projects-grid, .about-grid, .info-grid, .dash-stats { grid-template-columns: 1fr; }
+    nav { padding: 14px 20px; }
+    .brand { font-size: 1.1rem; }
+    .about-name { font-size: 1.8rem; letter-spacing: 2px; }
+    .dash-wrap { padding: 24px 20px; }
+}
+    </style>
+</head>
+<body>
+
+<div class="app-window">
+
+    <!-- ══ NAV ══ -->
+    <nav>
+        <div class="brand">GLAISEL <span>PICO</span></div>
+        <div class="nav-menu">
+            <button class="nav-btn active-btn" id="btn-register" onclick="go('register')">Register</button>
+            <button class="nav-btn" id="btn-login"    onclick="go('login')">Login</button>
+            <button class="nav-btn" id="btn-about"    onclick="go('about')">About Me</button>
+            <button class="nav-btn" id="btn-skills"   onclick="go('skills')">Skills</button>
+            <button class="nav-btn" id="btn-projects" onclick="go('projects')">Projects</button>
+            <button class="nav-btn" id="btn-quiz"     onclick="go('quiz')">Quiz</button>
+            <button class="nav-btn" id="btn-info"     onclick="go('info')">Info</button>
+            <button class="nav-btn" id="btn-stories"  onclick="go('stories')">Stories</button>
+            <button class="nav-btn" id="btn-contact"  onclick="go('contact')">Contact</button>
+        </div>
+    </nav>
+
+    <div id="viewport"></div>
+</div>
+
+<!-- ══ PROJECT MODAL ══ -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <button class="modal-close" id="modalClose">✕</button>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   EMBEDDED JSON DATA
+   (portfolio data — loaded inline so the
+   site works from file:// without a server)
+════════════════════════════════════════ */
+const DATA = {
+  skills: [
+    { name: "HTML5",      icon: "🌐", level: 88, cat: "Markup"    },
+    { name: "CSS3",       icon: "🎨", level: 82, cat: "Styling"   },
+    { name: "JavaScript", icon: "⚡", level: 70, cat: "Scripting" },
+    { name: "PHP",        icon: "🐘", level: 60, cat: "Backend"   },
+    { name: "MySQL",      icon: "🗄️",  level: 65, cat: "Database"  },
+    { name: "Figma",      icon: "✏️",  level: 55, cat: "Design"    },
+    { name: "Git",        icon: "🔀", level: 72, cat: "Tools"     },
+    { name: "React",      icon: "⚛️",  level: 45, cat: "Framework" }
+  ],
+  projects: [
+    {
+      id: 1, emoji: "🎓", title: "Student Portal UI",
+      tags: ["html","js"], tagLabels: ["HTML/CSS","JavaScript"],
+      desc: "A responsive student portal with login, dashboard, and grade viewer.",
+      detail: "Built as a Prelim project using vanilla HTML, CSS, and JavaScript. Features simulated login, grade calculator, and announcements feed.",
+      tech: ["HTML5","CSS3","JavaScript","LocalStorage"]
+    },
+    {
+      id: 2, emoji: "☁️", title: "Weather Dashboard",
+      tags: ["js"], tagLabels: ["JavaScript","API"],
+      desc: "Real-time weather app using OpenWeatherMap API with 5-day forecast.",
+      detail: "Demonstrates async JavaScript, Fetch API, and JSON data parsing. City search with live result rendering.",
+      tech: ["JavaScript","Fetch API","JSON","CSS Grid"]
+    },
+    {
+      id: 3, emoji: "💼", title: "This Portfolio",
+      tags: ["html","js"], tagLabels: ["HTML/CSS","JavaScript"],
+      desc: "Single-page portfolio with login, quiz, projects, and JSON data integration.",
+      detail: "Designed from the midterm output and upgraded for the finals. Features JSON-driven skills and projects, form validation, working login system, and modals.",
+      tech: ["HTML5","CSS3","JavaScript","JSON"]
+    },
+    {
+      id: 4, emoji: "✅", title: "Task Manager App",
+      tags: ["fullstack"], tagLabels: ["Full Stack","PHP"],
+      desc: "Full-stack task manager with user auth and MySQL-backed persistence.",
+      detail: "PHP and MySQL backend with a responsive vanilla JS frontend. Includes CRUD operations, user registration, and deadline tracking.",
+      tech: ["PHP","MySQL","JavaScript","CSS3"]
+    },
+    {
+      id: 5, emoji: "📝", title: "Interactive Quiz",
+      tags: ["js"], tagLabels: ["JavaScript"],
+      desc: "Multiple-choice quiz with timer, score tracking, and JSON question bank.",
+      detail: "Questions load from a JSON object. Features countdown timer, animated transitions, and a score summary screen.",
+      tech: ["JavaScript","JSON","CSS Animations"]
+    },
+    {
+      id: 6, emoji: "🍳", title: "Recipe Finder",
+      tags: ["html","js"], tagLabels: ["HTML/CSS","XML"],
+      desc: "Recipe search app using XML data source with ingredient filtering.",
+      detail: "Uses DOMParser to read XML data. Users filter by dietary preference, search by ingredient, and save favorites.",
+      tech: ["HTML5","CSS3","JavaScript","XML"]
+    }
+  ],
+  info: [
+    { icon: "fas fa-keyboard",  title: "Input Devices",   body: "Keyboard, Mouse, Touchpad, Microphone, Webcam, Scanner" },
+    { icon: "fas fa-desktop",   title: "Output Devices",  body: "Monitor, Printer, Speakers, Projector, Headphones" },
+    { icon: "fas fa-hdd",       title: "Storage Devices", body: "HDD, SSD, Flash Drive, Cloud Storage, Optical Disc" },
+    { icon: "fas fa-microchip", title: "Processing Unit", body: "CPU (Central Processing Unit) — the brain of the computer" },
+    { icon: "fas fa-memory",    title: "Memory (RAM)",    body: "Temporary memory used while programs are running" },
+    { icon: "fas fa-network-wired", title: "Networking", body: "LAN, WAN, Wi-Fi, Ethernet, Router, Switch, IP Address" }
+  ],
+  messages: [
+    { name: "Kim Ashlee Nicor",    subject: "Project Collab",       date: "2025-06-02", status: "new"  },
+    { name: "Trixie Almodovar",    subject: "Assignment Help",       date: "2025-05-30", status: "new"  },
+    { name: "Ma'am / Sir",        subject: "Portfolio Submission",  date: "2025-05-28", status: "read" },
+    { name: "Anonymous",           subject: "Quiz Feedback",         date: "2025-05-25", status: "read" }
+  ],
+  stories: [
+    {
+      title: "The Little Cloud",
+      text: "Puffy lived high in the sky but felt very small. He was scared to rain. Then, tiny raindrops fell, the flowers smiled, and Puffy found his purpose. Sometimes the smallest act carries the greatest meaning."
+    },
+    {
+      title: "The Brave Turtle",
+      text: "Timo was a slow turtle who proved that steady steps save the day. His journey reminded everyone that pace doesn't matter as long as you don't stop moving forward. Consistency beats speed every time."
+    },
+    {
+      title: "Magic Crayon",
+      text: "Benny discovered that creativity is a responsibility. Every stroke he made changed the world around him. He drew a world where everyone had a place to belong — and it became real."
+    },
+    {
+      title: "The Shy Star",
+      text: "Twinkle learned to shine only when the world was darkest. She realized that even a small light can chase away the dark — and that shining for others is braver than shining for yourself."
+    }
+  ]
+};
+
+/* ════════════════════════════════════════
+   USER ACCOUNTS (demo — no server needed)
+════════════════════════════════════════ */
+const USERS = [
+  { username: "glaisel",  password: "pico2025",     role: "Admin"  },
+  { username: "admin",    password: "portfolio2025", role: "Admin"  },
+  { username: "viewer",   password: "view123",       role: "Viewer" }
+];
+
+/* ════════════════════════════════════════
+   APP STATE
+════════════════════════════════════════ */
+const vp = document.getElementById('viewport');
+let userAnswers = {};
+let currentUser = null;
+try { currentUser = JSON.parse(sessionStorage.getItem('gap_user')); } catch(e){}
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+function go(view) {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-btn'));
+    const btn = document.getElementById('btn-' + view);
+    if (btn) btn.classList.add('active-btn');
+    const map = {
+        register: renderRegister, login: renderLogin,
+        about: renderAbout, skills: renderSkills,
+        projects: renderProjects, quiz: renderQuiz,
+        info: renderInfo, stories: renderStories,
+        contact: renderContact, dashboard: renderDashboard
+    };
+    if (map[view]) map[view]();
+    vp.scrollTop = 0;
+}
+
+/* ════════════════════════════════════════
+   REGISTER
+════════════════════════════════════════ */
+function renderRegister() {
+    vp.innerHTML = `
+    <div class="form-layout">
+      <div class="form-side-text" style="flex:1">
+        <h1>Create <span>Account</span></h1>
+        <p style="margin-top:10px">Register to access the full portfolio experience — including the admin dashboard and contact form.</p>
+      </div>
+      <div class="form-box" style="flex:1">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="rName" placeholder="e.g. Glaisel Anne Pico">
+          <span class="err-msg" id="rNameErr"></span>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="rEmail" placeholder="you@email.com">
+          <span class="err-msg" id="rEmailErr"></span>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="rPass" placeholder="Min. 6 characters">
+            <button class="toggle-pass" onclick="togglePass('rPass',this)">👁</button>
+          </div>
+          <span class="err-msg" id="rPassErr"></span>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="rPass2" placeholder="Repeat password">
+          <span class="err-msg" id="rPass2Err"></span>
+        </div>
+        <button class="action-btn" id="regBtn" onclick="doRegister()">Create Account</button>
+        <div class="success-msg" id="regOk">✓ Account created! Redirecting to login…</div>
+      </div>
+    </div>`;
+}
+
+function doRegister() {
+    const n  = v('rName'),  e  = v('rEmail'),
+          p  = v('rPass'),  p2 = v('rPass2');
+    let ok = true;
+    ok = require('rName',  n,  'Full name is required.')     && ok;
+    ok = require('rEmail', e,  'Email is required.')         && ok;
+    ok = emailOk('rEmail', e)                                && ok;
+    ok = require('rPass',  p,  'Password is required.')      && ok;
+    ok = minLen('rPass',   p, 6, 'Min. 6 characters.')       && ok;
+    ok = match('rPass2',   p, p2, 'Passwords do not match.') && ok;
+    if (!ok) return;
+
+    const btn = id('regBtn');
+    btn.textContent = 'Creating…'; btn.disabled = true;
+    setTimeout(() => {
+        show('regOk');
+        setTimeout(() => go('login'), 1400);
+    }, 900);
+}
+
+/* ════════════════════════════════════════
+   LOGIN
+════════════════════════════════════════ */
+function renderLogin() {
+    vp.innerHTML = `
+    <div class="form-layout">
+      <div class="form-side-text" style="flex:1">
+        <h1>Welcome <span>Back</span></h1>
+        <p style="margin-top:10px">Log in to access the admin dashboard.</p>
+      </div>
+      <div class="form-box" style="flex:1">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="lUser" placeholder="glaisel">
+          <span class="err-msg" id="lUserErr"></span>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="lPass" placeholder="••••••••">
+            <button class="toggle-pass" onclick="togglePass('lPass',this)">👁</button>
+          </div>
+          <span class="err-msg" id="lPassErr"></span>
+        </div>
+        <div class="checkbox-row">
+          <label><input type="checkbox" id="lRemember"> Remember me</label>
+        </div>
+        <button class="action-btn" id="loginBtn" onclick="doLogin()">Sign In</button>
+        <div class="global-err" id="lGlobalErr"></div>
+        <p class="hint-text">Demo: <code>glaisel</code> / <code>pico2025</code></p>
+      </div>
+    </div>`;
+}
+
+function doLogin() {
+    const u = v('lUser'), p = v('lPass');
+    let ok = true;
+    ok = require('lUser', u, 'Username is required.') && ok;
+    ok = require('lPass', p, 'Password is required.') && ok;
+    if (!ok) return;
+
+    const btn = id('loginBtn');
+    btn.textContent = 'Signing in…'; btn.disabled = true;
+    id('lGlobalErr').textContent = '';
+
+    setTimeout(() => {
+        const match = USERS.find(u2 => u2.username === u && u2.password === p);
+        if (match) {
+            currentUser = { username: match.username, role: match.role };
+            sessionStorage.setItem('gap_user', JSON.stringify(currentUser));
+            btn.textContent = '✓ Success!';
+            setTimeout(() => { go('dashboard'); }, 700);
+        } else {
+            id('lGlobalErr').textContent = 'Incorrect username or password.';
+            id('lPass').value = '';
+            btn.textContent = 'Sign In'; btn.disabled = false;
+        }
+    }, 800);
+}
+
+/* ════════════════════════════════════════
+   ABOUT ME  (from midterm, enriched)
+════════════════════════════════════════ */
+function renderAbout() {
+    vp.innerHTML = `
+    <div class="about-page">
+      <div class="avatar-ring">👩‍💻</div>
+      <h2 class="about-name">ABOUT ME</h2>
+      <p class="about-italic">GLAISEL ANNE GARCIA PICO</p>
+      <p class="about-bio">Hi! I'm Glai. I am intuitive, resilient, and thoughtful. This portal showcases my journey as a student in <strong>INFORMATION TECHNOLOGY</strong>. I love building things, telling stories, and finding purpose in every small step.</p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h4><i class="fas fa-book"></i> Academic Load</h4>
+          <ul>
+            <li>IM102 – Advanced Database System</li>
+            <li>NET101 – Networking 1</li>
+            <li>IPT101 – Integrative Programming</li>
+            <li>WD101 – Web Development</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h4><i class="fas fa-users"></i> Connections</h4>
+          <p><strong>Kim Ashlee Nicor</strong><br>A true friend through thick and thin.</p>
+          <br>
+          <p><strong>Trixie Eunice Almodovar</strong><br>Kindness personified.</p>
+        </div>
+        <div class="about-card">
+          <h4><i class="fas fa-heart"></i> Movies I Love</h4>
+          <p><strong>Hello, Love, Goodbye</strong></p>
+          <p><strong>One More Chance</strong></p>
+          <p><strong>Love Is Color Blind</strong></p>
+          <div class="mood-row" style="margin-top:14px;">
+            <div class="mood-box"><span class="mood-emoji">😊</span><p>Happy</p></div>
+            <div class="mood-box"><span class="mood-emoji">🥺</span><p>Sad</p></div>
+            <div class="mood-box"><span class="mood-emoji">😤</span><p>Grind Mode</p></div>
+          </div>
+        </div>
+        <div class="about-card">
+          <h4><i class="fas fa-map-marker-alt"></i> Quick Info</h4>
+          <p>📍 Central Luzon, Philippines</p>
+          <p style="margin-top:6px;">🎓 IT Student — 2nd Year</p>
+          <p style="margin-top:6px;">💌 glaisel@email.com</p>
+          <p style="margin-top:6px;">🌸 Available for internships</p>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ════════════════════════════════════════
+   SKILLS  (JSON-driven)
+════════════════════════════════════════ */
+function renderSkills() {
+    const rows = DATA.skills.map(s => `
+      <li>
+        <div class="skill-label"><span>${s.icon} ${s.name} <small style="font-weight:400;color:var(--muted);font-size:0.7rem;">${s.cat}</small></span><span>${s.level}%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:0" data-w="${s.level}%"></div></div>
+      </li>`).join('');
+
+    vp.innerHTML = `
+    <div class="page-wrap">
+      <h2 class="page-title">Skills <span class="json-badge">JSON</span></h2>
+      <p class="page-sub">Technologies and tools I work with — loaded from embedded JSON data.</p>
+      <div class="card" style="padding:28px 32px;">
+        <ul class="skills-bar-list">${rows}</ul>
+      </div>
+    </div>`;
+
+    // Animate bars after render
+    setTimeout(() => {
+        document.querySelectorAll('.skill-fill').forEach(el => {
+            el.style.width = el.dataset.w;
+        });
+    }, 80);
+}
+
+/* ════════════════════════════════════════
+   PROJECTS  (JSON-driven + filter + modal)
+════════════════════════════════════════ */
+function renderProjects() {
+    const cards = DATA.projects.map(p => {
+        const tagsHtml = p.tagLabels.map(t => `<span class="proj-tag">${t}</span>`).join('');
+        return `
+        <div class="proj-card" data-tags="${p.tags.join(' ')}" onclick="openModal(${p.id})">
+          <div class="proj-thumb">${p.emoji}</div>
+          <div class="proj-body">
+            <div class="proj-tags">${tagsHtml}</div>
+            <div class="proj-title">${p.title}</div>
+            <p class="proj-desc">${p.desc}</p>
+          </div>
+        </div>`;
+    }).join('');
+
+    vp.innerHTML = `
+    <div class="page-wrap">
+      <h2 class="page-title">Projects <span class="json-badge">JSON</span></h2>
+      <p class="page-sub">Click any card for details. Loaded from embedded JSON.</p>
+      <div class="filter-row">
+        <button class="filter-btn active" data-f="all">All</button>
+        <button class="filter-btn" data-f="html">HTML/CSS</button>
+        <button class="filter-btn" data-f="js">JavaScript</button>
+        <button class="filter-btn" data-f="fullstack">Full Stack</button>
+      </div>
+      <div class="projects-grid" id="projGrid">${cards}</div>
+    </div>`;
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const f = this.dataset.f;
+            document.querySelectorAll('.proj-card').forEach(c => {
+                c.classList.toggle('hidden', f !== 'all' && !c.dataset.tags.includes(f));
+            });
+        });
+    });
+}
+
+function openModal(pid) {
+    const p = DATA.projects.find(x => x.id === pid);
+    if (!p) return;
+    const techHtml = p.tech.map(t => `<span class="modal-tag">${t}</span>`).join('');
+    document.getElementById('modalContent').innerHTML = `
+      <span class="modal-emoji">${p.emoji}</span>
+      <h3 class="modal-title">${p.title}</h3>
+      <p class="modal-body">${p.detail}</p>
+      <div class="modal-tech">${techHtml}</div>
+      <a href="#" class="modal-link" onclick="closeModal();return false;">← Back to Projects</a>`;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').onclick  = closeModal;
+document.getElementById('modalOverlay').onclick = e => { if (e.target.id === 'modalOverlay') closeModal(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ════════════════════════════════════════
+   QUIZ  (from midterm, upgraded with
+          answer reveal after submit)
+════════════════════════════════════════ */
+function renderQuiz() {
+    const Qs = [
+        { q: "Which of these is used to type letters?",       a: ["Mouse","Keyboard","Monitor"],  c: 1 },
+        { q: "What is the 'brain' of the computer?",          a: ["CPU","RAM","Battery"],          c: 0 },
+        { q: "Which one is a social media platform?",         a: ["Excel","Facebook","Photoshop"], c: 1 },
+        { q: "What do you use to click things on screen?",    a: ["Keyboard","Printer","Mouse"],   c: 2 },
+        { q: "A portable computer you can carry is called?",  a: ["Desktop","Laptop","Server"],    c: 1 }
+    ];
+    let html = `<div class="page-wrap"><h2 class="page-title">Computer Quiz</h2><p class="page-sub">Answer all 5 questions then tap Submit.</p>`;
+    Qs.forEach((item, qi) => {
+        const opts = item.a.map((opt, ai) =>
+            `<button class="q-opt q-opt-${qi}" id="opt-${qi}-${ai}" onclick="pick(${qi},${ai})">${String.fromCharCode(65+ai)}. ${opt}</button>`
+        ).join('');
+        html += `<div class="quiz-q" id="qq-${qi}"><p>${qi+1}. ${item.q}</p>${opts}</div>`;
+    });
+    html += `<div id="quiz-result"></div>
+             <button class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+             </div>`;
+    vp.innerHTML = html;
+    userAnswers = {};
+}
+
+function pick(qi, ai) {
+    document.querySelectorAll(`.q-opt-${qi}`).forEach(b => b.classList.remove('selected'));
+    document.getElementById(`opt-${qi}-${ai}`).classList.add('selected');
+    userAnswers[qi] = ai;
+}
+
+function submitQuiz() {
+    const correct = [1, 0, 1, 2, 1];
+    if (Object.keys(userAnswers).length < 5) {
+        alert('Please answer all 5 questions first!'); return;
+    }
+    let score = 0;
+    correct.forEach((c, i) => {
+        const chosen = userAnswers[i];
+        if (chosen === c) {
+            document.getElementById(`opt-${i}-${chosen}`).classList.add('correct');
+            score++;
+        } else {
+            document.getElementById(`opt-${i}-${chosen}`).classList.add('wrong');
+            document.getElementById(`opt-${i}-${c}`).classList.add('correct');
+        }
+    });
+    const msgs = ['Keep studying! 📚','Not bad! 🙂','Decent! 👍','Great job! 🎉','Perfect score! 🌟'];
+    document.getElementById('quiz-result').innerHTML =
+        `Score: ${score} / 5 — ${msgs[score]}`;
+}
+
+/* ════════════════════════════════════════
+   INFO  (JSON-driven)
+════════════════════════════════════════ */
+function renderInfo() {
+    const cards = DATA.info.map(c =>
+        `<div class="info-card">
+           <h4><i class="${c.icon}"></i> ${c.title}</h4>
+           <p>${c.body}</p>
+         </div>`
+    ).join('');
+    vp.innerHTML = `
+    <div class="page-wrap">
+      <h2 class="page-title">Computer Info <span class="json-badge">JSON</span></h2>
+      <p class="page-sub">Basic computer hardware knowledge — dynamically rendered from JSON data.</p>
+      <div class="info-grid">${cards}</div>
+    </div>`;
+}
+
+/* ════════════════════════════════════════
+   STORIES  (from midterm, kept intact)
+════════════════════════════════════════ */
+function renderStories() {
+    const items = DATA.stories.map((s, i) => `
+      <div class="story-card" id="sc-${i}" onclick="toggleStory(${i})">
+        <div class="story-header"><span>${s.title}</span><i class="fas fa-plus"></i></div>
+        <div class="story-body"><p>${s.text}</p></div>
+      </div>`).join('');
+    vp.innerHTML = `
+    <div class="page-wrap">
+      <h2 class="page-title">Stories</h2>
+      <p class="page-sub">Click a card to expand the story.</p>
+      ${items}
+    </div>`;
+}
+
+function toggleStory(i) {
+    document.getElementById('sc-' + i).classList.toggle('open');
+}
+
+/* ════════════════════════════════════════
+   CONTACT  (with full validation)
+════════════════════════════════════════ */
+function renderContact() {
+    vp.innerHTML = `
+    <div class="form-layout">
+      <div class="form-side-text" style="flex:1">
+        <h1>Get in <span>Touch</span></h1>
+        <p style="margin-top:10px;margin-bottom:20px;">Open to collaborations, internships, and project work. Send me a message!</p>
+        <p style="font-size:0.88rem;color:var(--muted);">📧 glaisel@email.com</p>
+        <p style="font-size:0.88rem;color:var(--muted);margin-top:6px;">📍 Central Luzon, Philippines</p>
+      </div>
+      <div class="form-box" style="flex:1">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="cName" placeholder="Your name">
+          <span class="err-msg" id="cNameErr"></span>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="cEmail" placeholder="your@email.com">
+          <span class="err-msg" id="cEmailErr"></span>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" id="cSubj" placeholder="Project inquiry…">
+          <span class="err-msg" id="cSubjErr"></span>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="cMsg" rows="4" placeholder="Tell me more…"></textarea>
+          <span class="err-msg" id="cMsgErr"></span>
+        </div>
+        <button class="action-btn" id="sendBtn" onclick="sendContact()">Send Message</button>
+        <div class="success-msg" id="contactOk">✓ Message sent! I'll get back to you soon 💌</div>
+      </div>
+    </div>`;
+}
+
+function sendContact() {
+    const n = v('cName'), e = v('cEmail'), s = v('cSubj'), m = v('cMsg');
+    let ok = true;
+    ok = require('cName',  n, 'Name is required.')                     && ok;
+    ok = require('cEmail', e, 'Email is required.')                    && ok;
+    ok = emailOk('cEmail', e)                                          && ok;
+    ok = require('cSubj',  s, 'Subject is required.')                  && ok;
+    ok = require('cMsg',   m, 'Message cannot be empty.')              && ok;
+    ok = minLen('cMsg',    m, 10, 'Please write a bit more.')          && ok;
+    if (!ok) return;
+
+    const btn = id('sendBtn');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    setTimeout(() => {
+        btn.textContent = 'Send Message'; btn.disabled = false;
+        ['cName','cEmail','cSubj','cMsg'].forEach(fid => {
+            id(fid).value = '';
+            id(fid + 'Err').textContent = '';
+            id(fid).classList.remove('err');
+        });
+        show('contactOk');
+        setTimeout(() => { id('contactOk').style.display = 'none'; }, 4000);
+    }, 1100);
+}
+
+/* ════════════════════════════════════════
+   DASHBOARD  (login-gated)
+════════════════════════════════════════ */
+function renderDashboard() {
+    if (!currentUser) { go('login'); return; }
+    const rows = DATA.messages.map(m =>
+        `<tr>
+           <td>${m.name}</td>
+           <td>${m.subject}</td>
+           <td style="font-size:.8rem;color:var(--muted);font-family:monospace">${m.date}</td>
+           <td><span class="${m.status === 'new' ? 'badge-new' : 'badge-read'}">${m.status}</span></td>
+         </tr>`
+    ).join('');
+    vp.innerHTML = `
+    <div class="dash-wrap">
+      <div class="dash-header">
+        <h2>Welcome, ${currentUser.username} 👋 <small style="font-size:.9rem;font-weight:400;color:var(--muted)">(${currentUser.role})</small></h2>
+        <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+      <div class="dash-stats">
+        <div class="dash-stat"><span class="num">6</span><span class="lbl">Projects</span></div>
+        <div class="dash-stat"><span class="num">8</span><span class="lbl">Skills</span></div>
+        <div class="dash-stat"><span class="num">4</span><span class="lbl">Messages</span></div>
+        <div class="dash-stat"><span class="num">4</span><span class="lbl">Stories</span></div>
+      </div>
+      <div class="dash-table-wrap">
+        <table class="dash-table">
+          <thead><tr><th>Name</th><th>Subject</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+function doLogout() {
+    currentUser = null;
+    sessionStorage.removeItem('gap_user');
+    go('login');
+}
+
+/* ════════════════════════════════════════
+   VALIDATION HELPERS
+════════════════════════════════════════ */
+const id   = sel => document.getElementById(sel);
+const v    = sel => (id(sel) ? id(sel).value.trim() : '');
+const show = sel => { const el = id(sel); if (el) el.style.display = 'block'; };
+
+function setErr(fid, msg) {
+    const el = id(fid + 'Err');
+    if (el) el.textContent = msg;
+    const inp = id(fid);
+    if (inp) inp.classList.toggle('err', !!msg);
+    return !msg;
+}
+
+function require(fid, val, msg) { return setErr(fid, val ? '' : msg); }
+function emailOk(fid, val)      { return setErr(fid, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) ? '' : 'Enter a valid email.'); }
+function minLen(fid, val, n, msg){ return setErr(fid, val.length >= n ? '' : msg); }
+function match(fid, a, b, msg)  { return setErr(fid, a === b ? '' : msg); }
+
+function togglePass(inputId, btn) {
+    const inp = id(inputId);
+    if (!inp) return;
+    const show = inp.type === 'password';
+    inp.type = show ? 'text' : 'password';
+    btn.textContent = show ? '🙈' : '👁';
+}
+
+/* ════════════════════════════════════════
+   BOOT
+════════════════════════════════════════ */
+go('register');
+    </script>
+</body>
+</html>
